@@ -1,0 +1,4 @@
+C:\Users\malek\source\repos\PillsTracker\PillsTracker\obj\Release\net10.0\browser-wasm\PubTmp\Out\wwwroot\index.html
+C:\Users\malek\source\repos\PillsTracker\PillsTracker\obj\Release\net10.0\browser-wasm\PubTmp\Out\PillsTracker.runtimeconfig.json
+C:\Users\malek\source\repos\PillsTracker\PillsTracker\obj\Release\net10.0\browser-wasm\PubTmp\Out\dotnet.js
+C:\Users\malek\source\repos\PillsTracker\PillsTracker\obj\Release\net10.0\browser-wasm\PubTmp\Out\web.config

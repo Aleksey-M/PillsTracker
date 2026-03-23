@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PillsTracker</title>
+    <!--<base href="/" />-->
+    <base href="aleksey-m.github.io/pills-tracker/" />
+    <link href="_framework/dotnet.yl4kykckyr.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-qrklSPvwSCDzjfdH+gPlios2U9/3kN9eJOilWVIjTAo=" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="PillsTracker.styles.css" rel="stylesheet" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <script type="importmap">{
+  "imports": {
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.1bo0jcjg8s.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.peu2mfb29t.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.yl4kykckyr.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/blazor.webassembly.66stpp682q.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
+    "./_framework/blazor.webassembly.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
+    "./_framework/dotnet.js": "sha256-qrklSPvwSCDzjfdH+gPlios2U9/3kN9eJOilWVIjTAo=",
+    "./_framework/dotnet.native.1bo0jcjg8s.js": "sha256-87EuQj57WZ7vrCG+YrO8F6rhSIC93zlr3szr9cDoI2U=",
+    "./_framework/dotnet.native.js": "sha256-87EuQj57WZ7vrCG+YrO8F6rhSIC93zlr3szr9cDoI2U=",
+    "./_framework/dotnet.runtime.js": "sha256-cajUr4vA/MpLPWj3omULUOwEQw3i8CE2n8AmDheqWBM=",
+    "./_framework/dotnet.runtime.peu2mfb29t.js": "sha256-cajUr4vA/MpLPWj3omULUOwEQw3i8CE2n8AmDheqWBM=",
+    "./_framework/dotnet.yl4kykckyr.js": "sha256-qrklSPvwSCDzjfdH+gPlios2U9/3kN9eJOilWVIjTAo="
+  }
+}</script>
+
+    <script>
+        function scheduleNotification(title, body, timestamp) {
+            if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                    type: 'schedule-notification',
+                    payload: {
+                        title: title,
+                        body: body,
+                        //timestamp: timestamp
+                    }
+                });
+            } else {
+                console.warn("Service Worker не активен");
+            }
+        }
+
+        async function requestNotificationPermission() {
+            if (!("Notification" in window)) {
+                console.error("Браузер не поддерживает уведомления");
+                return;
+            }
+
+            const permission = await Notification.requestPermission();
+            if (permission === "granted") {
+                console.log("Разрешение получено");
+            } else {
+                console.warn("Разрешение не получено:", permission);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });</script>
+</body>
+
+</html>
