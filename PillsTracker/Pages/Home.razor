@@ -5,3 +5,29 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<br />
+<button type="button" onclick="requestNotificationPermission()">Запрос на показ уведомлений</button>
+<br />
+<button type="button" onclick="scheduleNotification('Напоминание', 'Пора пить таблетки', null)">Напоминание</button>
+
+@* @code {
+    using Microsoft.JSInterop;
+
+public class NotificationInterop
+{
+    private readonly IJSRuntime _js;
+
+    public NotificationInterop(IJSRuntime js)
+    {
+        _js = js;
+    }
+
+    public async Task ScheduleNotification(string title, string body, DateTime time)
+    {
+        var timestamp = new DateTimeOffset(time).ToUnixTimeMilliseconds();
+        await _js.InvokeVoidAsync("scheduleNotification", title, body, timestamp);
+    }
+}
+await JS.InvokeVoidAsync("requestNotificationPermission");
+} *@

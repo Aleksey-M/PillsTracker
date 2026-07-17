@@ -1,3 +1,9 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="PillsTracker.Application/PillsTracker.Application.fsproj" Id="a4efd76b-17c6-4b5a-abbc-2e5f186facb7" />
+    <Project Path="PillsTracker.Domain/PillsTracker.Domain.fsproj" Id="4f1cb5bf-8fb0-49de-973b-303fbecfb1ba" />
+    <Project Path="PillsTracker.Infrastructure/PillsTracker.Infrastructure.fsproj" Id="230888e0-6758-4e91-9c5a-ca83da16ba0b" />
+  </Folder>
+  <Folder Name="/tests/" />
   <Project Path="PillsTracker/PillsTracker.csproj" />
 </Solution>

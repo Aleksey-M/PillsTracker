@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PillsTracker</title>
-    <base href="/pills-tracker/" />
+    <base href="/" />
+    <!--<base href="/pills-tracker/" />-->
     <link rel="preload" id="webassembly" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
@@ -15,6 +16,37 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
     <script type="importmap"></script>
+
+    <script>
+        function scheduleNotification(title, body, timestamp) {
+            if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                    type: 'schedule-notification',
+                    payload: {
+                        title: title,
+                        body: body,
+                        //timestamp: timestamp
+                    }
+                });
+            } else {
+                console.warn("Service Worker не активен");
+            }
+        }
+
+        async function requestNotificationPermission() {
+            if (!("Notification" in window)) {
+                console.error("Браузер не поддерживает уведомления");
+                return;
+            }
+
+            const permission = await Notification.requestPermission();
+            if (permission === "granted") {
+                console.log("Разрешение получено");
+            } else {
+                console.warn("Разрешение не получено:", permission);
+            }
+        }
+    </script>
 </head>
 
 <body>
